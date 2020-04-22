@@ -1,0 +1,25 @@
+.start-wrapper {
+  article {
+    display: grid;
+    gap: 25px;
+
+    button {
+      padding: 10px 55px;
+      border-radius: 3px;
+      justify-self: center;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      list-style-type: disc;
+    }
+  }
+
+  .start-text {
+    display: grid;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,51 @@
+@import '../../lib/_variables.scss';
+
+.wrapper-details {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15px;
+
+  figure {
+    display: grid;
+    grid-template-rows: 30px 1fr;
+
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  article {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 30px;
+
+    .details-header {
+      display: flex;
+      align-items: center;
+
+      h4 {
+        margin-right: 5px;
+      }
+    }
+
+    .details-info {
+      border: 1px solid $primary;
+
+      p {
+        background: $primary;
+        color: white;
+        padding: 7px 15px;
+      }
+
+      ul {
+        padding: 10px;
+      }
+    }
+  }
+}

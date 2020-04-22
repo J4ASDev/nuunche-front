@@ -1,0 +1,34 @@
+.wrapper-content-list {
+  display: flex;
+  justify-content: center;
+
+  .wrapper-carousel {
+    width: 620px;
+
+    .text-media {
+      z-index: 5;
+      margin: 0;
+      position: absolute;
+      color: white;
+      bottom: 0;
+      left: 0;
+      padding: 10px;
+      background-color: #00000038;
+
+      h5 {
+        margin: 0;
+        text-align: left;
+      }
+
+      p {
+        width: 200px;
+        height: 59px;
+        font-size: 12px;
+        font-weight: 100;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: initial;
+      }
+    }
+  }
+}

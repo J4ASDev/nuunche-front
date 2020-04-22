@@ -1,0 +1,65 @@
+@import '../../lib/_variables.scss';
+
+.home-wrapper {
+  z-index: 5;
+  display: grid;
+  grid-template-rows: 150px 1fr 35px;
+  gap: 45px;
+  margin: 0 10%;
+
+  header {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    gap: 30px;
+
+    .wrapper-logo {
+      width: 150px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .wrapper-menu {
+      display: grid;
+      grid-template-columns: repeat(3, 120px);
+      justify-content: end;
+      gap: 10px;
+      justify-items: center;
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .wrapper-content {
+    height: 400px;
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    color: $primary;
+    width: 260px;
+    justify-self: center;
+    border: 1px solid;
+    align-items: center;
+    padding: 0 50px;
+  }
+}
+
+.home-gradient-header {
+  z-index: -1;
+  clip-path: polygon(103% 0, 101% 12%, 90% 21%, 26% 17%, 0 28%, 0 0);
+  background: $primary;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  bottom: 0;
+}
