@@ -26,6 +26,7 @@ const ContentList = ({ playlist }) => (
                 <div className="text-media">
                   <h5 className="title">{title}</h5>
                   <p>{description}</p>
+                  <Link to={`/contenidos/detalle/${id}`}>Ver detalles.</Link>
                 </div>
                 <Link to={`/contenidos/detalle/${id}`}>
                   <div>

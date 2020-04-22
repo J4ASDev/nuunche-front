@@ -14,6 +14,8 @@
       left: 0;
       padding: 10px;
       background-color: #00000038;
+      display: grid;
+      gap: 10px;
 
       h5 {
         margin: 0;
@@ -28,6 +30,13 @@
         text-overflow: ellipsis;
         overflow: hidden;
         text-align: initial;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+        border: 1px solid;
+        padding: 10px;
       }
     }
   }
