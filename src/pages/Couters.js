@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { onSubtractOrAdd } from '../actions/counters'
+import { setCounters } from '../actions/counters'
 
 import HomeLayout from '../components/Layouts/HomeLayout'
 import CountersComponent from '../components/Counters'
@@ -13,47 +13,70 @@ class CountersPage extends Component {
     super(props)
 
     this.state = {
-      countersList: [],
+      counters: [],
+      total: 0,
     }
   }
 
-  createCounters = () => {
-    const { counter_1, counter_2, counter_3 } = this.props
+  // Nota: Debido a que el indice es inestable, pase un id y luego busque su indice actual.
+  onSubtractOrAdd = async (id, count) => {
+    const { countersList } = this.props
 
-    const counters = [
-      {
-        id: 1,
-        count: counter_1,
-        onClick: (id, count) => this.props.onSubtractOrAdd(id, count),
-      },
-      {
-        id: 2,
-        count: counter_2,
-        onClick: (id, count) => this.props.onSubtractOrAdd(id, count),
-      },
-      {
-        id: 3,
-        count: counter_3,
-        onClick: (id, count) => this.props.onSubtractOrAdd(id, count),
-      },
-    ]
+    const findIndex = countersList.findIndex((counter) => counter.id === id)
+    let copyCounters = JSON.parse(JSON.stringify(countersList))
 
-    this.setState({ countersList: counters })
+    copyCounters[findIndex].value = count
+
+    await this.props.setCounters(copyCounters)
   }
 
-  async componentDidMount() {
-    await this.createCounters()
+  createNewCounter = () => {
+    const { counters } = this.state
+
+    let copyCounters = JSON.parse(JSON.stringify(counters))
+
+    copyCounters.push({
+      value: 0,
+      id: ++counters.length,
+    })
+
+    this.props.setCounters(copyCounters)
+  }
+
+  calculateTotalCount = (countersList) => {
+    let total = 0
+
+    countersList.map((counter) => (total += counter.value))
+
+    return { total }
+  }
+
+  async componentDidUpdate(prevProps) {
+    const { countersList } = this.props
+    const { countersList: prevCountersList } = prevProps
+
+    if (countersList !== prevCountersList) {
+      const { total } = this.calculateTotalCount(countersList)
+
+      this.setState({
+        total,
+        counters: countersList.map((counter) => ({
+          ...counter,
+          onClick: (id, count) => this.onSubtractOrAdd(id, count),
+        })),
+      })
+    }
   }
 
   render() {
-    const { counter_1, counter_2, counter_3 } = this.props
-    const { countersList } = this.state
+    const { counters, total } = this.state
 
     return (
       <HomeLayout>
         <CountersComponent
-          countersList={countersList}
-          total={counter_1 + counter_2 + counter_3}
+          newCounter={this.createNewCounter}
+          total={total}
+          counters={counters}
         />
       </HomeLayout>
     )
@@ -61,20 +84,16 @@ class CountersPage extends Component {
 }
 
 CountersPage.propTypes = {
-  counter_1: PropTypes.number,
-  counter_2: PropTypes.number,
-  counter_3: PropTypes.number,
-  onSubtractOrAdd: PropTypes.func,
+  setCounters: PropTypes.func,
+  countersList: PropTypes.array,
 }
 
 const mapStateToprops = ({ counters }) => ({
-  counter_1: counters.counter_1,
-  counter_2: counters.counter_2,
-  counter_3: counters.counter_3,
+  countersList: counters.countersList,
 })
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ onSubtractOrAdd }, dispatch)
+  return bindActionCreators({ setCounters }, dispatch)
 }
 
 export default connect(mapStateToprops, mapDispatchToProps)(CountersPage)

@@ -1,6 +1,16 @@
 @import '../../lib/_variables.scss';
 
 .counters-wrapper {
+  display: grid;
+  gap: 10px;
+
+  .new-counter {
+    button {
+      padding: 10px 55px;
+      border-radius: 3px;
+    }
+  }
+
   article {
     display: grid;
     grid-template-columns: repeat(3, 250px);

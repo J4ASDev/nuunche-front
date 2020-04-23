@@ -1,9 +1,8 @@
 import * as types from './types'
 
-export const onSubtractOrAdd = (id, count) => ({
-  type: types.INCREMENT_OR_DECREMENT,
+export const setCounters = (counters) => ({
+  type: types.SET_COUNTERS,
   payload: {
-    id,
-    count,
+    counters,
   },
 })

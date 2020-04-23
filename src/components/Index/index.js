@@ -21,8 +21,8 @@ const Home = ({ onHandleButton }) => (
               en el carousel.
             </li>
             <li>
-              <strong>Contadores:</strong> Vista con 3 contadores distintos y
-              una suma total entre ellos.
+              <strong>Contadores:</strong> Vista con n contadores y una suma
+              total entre ellos.
             </li>
           </ul>
         </div>

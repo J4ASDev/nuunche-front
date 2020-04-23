@@ -1,19 +1,17 @@
 import * as types from '../actions/types'
 
 const initialState = {
-  counter_1: 0,
-  counter_2: 0,
-  counter_3: 0,
+  countersList: [],
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.INCREMENT_OR_DECREMENT: {
-      const { id, count } = action.payload
+    case types.SET_COUNTERS: {
+      const { counters } = action.payload
 
       return {
         ...state,
-        [`counter_${id}`]: count,
+        countersList: counters,
       }
     }
 
